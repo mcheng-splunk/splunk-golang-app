@@ -1,0 +1,1 @@
+Simple application to demostrate using logr to capture O11y logging correlation.
