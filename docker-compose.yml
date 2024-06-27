@@ -1,0 +1,26 @@
+services:
+  splunk-otel-collector:
+    image: quay.io/signalfx/splunk-otel-collector:latest
+    # image: quay.io/signalfx/splunk-otel-collector:0.70.0
+    container_name: splunk-otel-collector
+    command: ["--config=/etc/otel-collector-config.yml"]
+    volumes:
+      - ./config/otel-collector-config.yml:/etc/otel-collector-config.yml
+#      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - SPLUNK_ACCESS_TOKEN=${SPLUNK_ACCESS_TOKEN}
+      - SPLUNK_REALM=${SPLUNK_REALM}
+      - SPLUNK_HEC_URL=${SPLUNK_HEC_URL}
+      - OTEL_LOG_LEVEL="debug"
+    ports:
+      - "13133:13133"
+      - "14250:14250"
+      - "14268:14268"
+      - "4317:4317"
+      - "4318:4318"
+      - "6060:6060"
+      - "8888:8888"
+      - "9080:9080"
+      - "9411:9411"
+      - "9943:9943"
+      - "8006:8006"
